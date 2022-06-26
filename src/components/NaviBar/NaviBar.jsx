@@ -5,10 +5,10 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 export default function NaviBar() {
 	return (
-		<Navbar bg="light" expand="lg">
+		<Navbar bg="dark" expand="lg" variant="dark">
 			<Container className={style.container}>
-				<img src={wallet} className={style.img_logo} />
-				<Navbar.Brand href="#home" className={style.logo_name}>YMB</Navbar.Brand>
+				<img src={wallet} alt="Wallet" className={style.img_logo} />
+				<Navbar.Brand href="/" className={style.logo_name}>Your Home Budget</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
