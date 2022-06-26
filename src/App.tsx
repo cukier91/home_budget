@@ -1,10 +1,15 @@
 import React from 'react';
-import "react-toastify/dist/ReactToastify.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import NaviBar from './components/NaviBar/NaviBar';
 
 function App() {
-  return (
-    <div>Hello </div>
-  );
+	return (
+		<>
+      <NaviBar/>
+			<div>Hello </div>
+		</>
+	);
 }
 
 export default App;
