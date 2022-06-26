@@ -23,22 +23,18 @@ export default function HomePage() {
       
               <div className="p-8 sm:p-16 lg:p-24">
                 <h2 className="text-2xl font-bold sm:text-3xl">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore,
-                  debitis.
+                  Inflacja zjada całą towją pensję? Chcesz zacząć planować wydatki i zapanować nad domowym budżetem? 
                 </h2>
       
                 <p className="mt-4 text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
-                  molestiae! Quidem est esse numquam odio deleniti, beatae, magni
-                  dolores provident quaerat totam eos, aperiam architecto eius quis
-                  quibusdam fugiat dicta.
+                  Zarejestruj się, dodaj kategorie które chcesz śledzić lub wybierz naszą podpowiedź gdy nie wiesz jak zacząć.
                 </p>
       
                 <a
                   className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring"
                   href="/contact"
                 >
-                  Get in Touch
+                  Zacznij korzystać !
                 </a>
               </div>
             </div>
