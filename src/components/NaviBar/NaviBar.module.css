@@ -1,0 +1,13 @@
+.container{
+    padding-left: 30%;
+}
+
+.img_logo{
+    width: 2rem;
+    filter: invert(100%);
+}
+
+.logo_name{
+    font-family: 'Montserrat', cursive;
+    font-weight: 600;
+}

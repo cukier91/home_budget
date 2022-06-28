@@ -1,29 +1,27 @@
 import React from 'react';
-import { useQueryClientConfig } from './config/react-query-client';
-import { QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import NaviBar from './components/NaviBar/NaviBar';
+import Foot from './components/Foot/Foot';
+import LoginPage from './components/LoginPage/LoginPage';
+import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
+import RegisterPage from './components/RegisterPage/RegisterPage';
 
 function App() {
-  const { queryClient } = useQueryClientConfig();
-  return (
-     <QueryClientProvider client={queryClient}>
-        {process.env.NODE_ENV === "development" && (
-          <ReactQueryDevtools position="top-right" initialIsOpen={false} />
-        )}
-        {/* routing */}
-        <ToastContainer
-          position="top-right"
-          limit={3}
-          autoClose={3000}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </QueryClientProvider>
-  );
+	return (
+		<>
+			<Routers>
+				<NaviBar />
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="login" element={<LoginPage />} />
+					<Route path="register" element={<RegisterPage />} />
+				</Routes>
+				<Foot />
+			</Routers>
+		</>
+	);
 }
 
 export default App;
