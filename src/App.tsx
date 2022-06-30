@@ -7,11 +7,13 @@ import LoginPage from './components/LoginPage/LoginPage';
 import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
 	return (
 		<>
 			<Routers>
+				<AuthProvider>
 				<NaviBar />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
@@ -19,6 +21,7 @@ function App() {
 					<Route path="register" element={<RegisterPage />} />
 				</Routes>
 				<Foot />
+				</AuthProvider>
 			</Routers>
 		</>
 	);
