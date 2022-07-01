@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import started from '../../img/getStarted.jpg';
 import { auth } from 'src/config/firebase-config';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useAuthContext } from 'src/context/AuthContext';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 
 export default function LoginPage() {
 	const [loginEmail, setLoginEmail] = useState('');
 	const [loginPassword, setLoginPassword] = useState('');
-
-	const {setIsAuthorized}=useAuthContext()
 
 	const login = async (e) => {
 		e.preventDefault()
@@ -18,12 +16,7 @@ export default function LoginPage() {
 				loginEmail,
 				loginPassword
 			);
-			console.log("loginUser",loginUser)
-			if(loginUser){
-				//TODO: co jak bledne haslo, jak wtedy wyglada loginUser
-				localStorage.setItem("user",true)
-				setIsAuthorized(true)
-			}
+	
 		} catch (err) {
 			alert(err)
 		}
@@ -119,8 +112,8 @@ export default function LoginPage() {
 
 					<div className="flex items-center justify-between">
 						<p className="text-sm text-gray-500">
-							No account?
-							<a className="underline" href="/register">
+							No account?  
+							<a className="underline " href="/register">
 								Sign up
 							</a>
 						</p>
@@ -139,7 +132,7 @@ export default function LoginPage() {
 				<img
 					className="absolute inset-0 object-cover w-full h-full"
 					src={started}
-					alt=""
+					alt="Laptop next to hot coffee in spot and some notebook with flowers above"
 				/>
 			</div>
 		</section>
