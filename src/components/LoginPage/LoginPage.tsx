@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import started from '../../img/getStarted.jpg';
 import { auth } from 'src/config/firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
-	const [loginEmail, setLoginEmail] = useState('');
-	const [loginPassword, setLoginPassword] = useState('');
 
-	const login = async (e) => {
-		e.preventDefault()
+	const navigate = useNavigate()
+	const [loginEmail, setLoginEmail] = useState<string>('');
+	const [loginPassword, setLoginPassword] = useState<string>('');
+
+	const login = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		try {
 			const loginUser = await signInWithEmailAndPassword(
 				auth,
 				loginEmail,
 				loginPassword
 			);
-	
+			return navigate('/')
 		} catch (err) {
-			alert(err)
+			alert(err);
 		}
 	};
 
@@ -34,7 +36,7 @@ export default function LoginPage() {
 					</p>
 				</div>
 
-				<form className="max-w-md mx-auto mt-8 mb-0 space-y-4">
+				<form className="max-w-md mx-auto mt-8 mb-0 space-y-4" onSubmit={(e) => login(e)}>
 					<div>
 						<label htmlFor="email" className="sr-only">
 							Email
@@ -112,14 +114,14 @@ export default function LoginPage() {
 
 					<div className="flex items-center justify-between">
 						<p className="text-sm text-gray-500">
-							No account?  
+							No account?
 							<a className="underline " href="/register">
 								Sign up
 							</a>
 						</p>
 
 						<button
-							onClick={login}
+							type='submit'
 							className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
 						>
 							Sign in

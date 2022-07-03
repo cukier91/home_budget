@@ -39,7 +39,7 @@ export default function NaviBar() {
 							<ul className="flex items-center gap-6 text-sm">
 								<li>
 									<Link
-										className="text-white transition hover:text-white/75"
+										className={style.link_name}
 										to="/about"
 									>
 										About
@@ -47,48 +47,48 @@ export default function NaviBar() {
 								</li>
 
 								<li>
-									<a
-										className="text-white transition hover:text-white/75"
-										href="/"
+									<Link
+										className={style.link_name}
+										to="/addShopping"
 									>
-										Careers
-									</a>
+										Add bill
+									</Link>
 								</li>
 
 								<li>
-									<a
-										className="text-white transition hover:text-white/75"
-										href="/"
+									<Link
+										className={style.link_name}
+										to="/"
 									>
 										History
-									</a>
+									</Link>
 								</li>
 
 								<li>
-									<a
-										className="text-white transition hover:text-white/75"
-										href="/"
+									<Link
+										className={style.link_name}
+										to="/"
 									>
 										Services
-									</a>
+									</Link>
 								</li>
 
 								<li>
-									<a
-										className="text-white transition hover:text-white/75"
-										href="/"
+									<Link
+										className={style.link_name}
+										to="/"
 									>
 										Projects
-									</a>
+									</Link>
 								</li>
 
 								<li>
-									<a
-										className="text-white transition hover:text-white/75"
-										href="/"
+									<Link
+										className={style.link_name}
+										to="/"
 									>
 										Blog
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</nav>
