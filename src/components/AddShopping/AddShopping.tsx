@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from 'src/config/firebase-config';
 import money from '../../img/money.jpg';
@@ -7,6 +7,12 @@ import style from '../AddShopping/AddShopping.module.css';
 // Add a new document in collection "cities"
 
 export default function AddShopping() {
+	const [startDate, setStartDate] = useState<number | string>('');
+	const [endDate, setEndDate] = useState<number | string>('');
+	const [selector, setSelector] = useState<boolean | undefined>(false);
+
+	console.log(startDate, endDate)
+
 	async function test() {
 		await setDoc(doc(db, 'user_id', '28.07.2022 - 28.08.2022'), {
 			expense: {
@@ -48,33 +54,39 @@ export default function AddShopping() {
 							</p>
 
 							<div className="flex mt-8 justify-left">
-								<button className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700">
+								<button onClick={() => selector===false?setSelector(true) : setSelector(false)} className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700"  >
 									Wybierz daty
 								</button>
 							</div>
-							<div className={style.date_form}>
-								<form className={style.form_general}>
-									<label htmlFor="startDate">
-										<h6>Start date:</h6>
-									</label>
-									<input
-										className={style.form_input}
-										id="startDate"
-										type="date"
-									/>
-									<label htmlFor="endDate">
-										<h6>End date:</h6>
-									</label>
-									<input
-										className={style.form_input}
-										id="endDate"
-										type="date"
-									/>
-								</form>
-								<button className=" mt-1.5 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700">
-									Wyślij
-								</button>
-							</div>
+							{selector ? (
+								<div className={style.date_form}>
+									<form className={style.form_general}>
+										<label htmlFor="startDate">
+											<h6>Start date:</h6>
+										</label>
+										<input
+											className={style.form_input}
+											id="startDate"
+											type="date"
+											value={startDate}
+											onChange={(e) => {setStartDate(e.target.value)}}
+										/>
+										<label htmlFor="endDate">
+											<h6>End date:</h6>
+										</label>
+										<input
+											className={style.form_input}
+											id="endDate"
+											type="date"
+											value={endDate}
+											onChange={(e) => {setEndDate(e.target.value)}}
+										/>
+									</form>
+									<button className=" mt-1.5 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700">
+										Wyślij
+									</button>
+								</div>
+							) : null}
 						</div>
 					</div>
 				</section>
