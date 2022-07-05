@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from 'src/config/firebase-config';
+import React, { useState, useEffect } from 'react';
+import { doc, setDoc, collection, getDocs } from 'firebase/firestore';
+import { auth, db } from 'src/config/firebase-config';
 import money from '../../img/money.jpg';
 import style from '../AddShopping/AddShopping.module.css';
+import { onAuthStateChanged } from 'firebase/auth';
+import { v4 as uuidv4} from 'uuid';
 
 // Add a new document in collection "cities"
 
 export default function AddShopping() {
+	const [documents, setDocuments] = useState<any>('');
 	const [startDate, setStartDate] = useState<number | string>('');
 	const [endDate, setEndDate] = useState<number | string>('');
 	const [selector, setSelector] = useState<boolean | undefined>(false);
+	const [userState, setUserState] = useState<string | null>('');
+	onAuthStateChanged(auth, (user) => {
+		user ? setUserState(user.uid) : setUserState(null);
+	});
 
-	console.log(startDate, endDate)
-
-	async function test() {
-		await setDoc(doc(db, 'user_id', '28.07.2022 - 28.08.2022'), {
+	async function addSavings() {
+		await setDoc(doc(db, `${userState}`, `${startDate} - ${endDate}`), {
 			expense: {
 				auto: [],
 				foodShopping: [],
@@ -24,14 +29,46 @@ export default function AddShopping() {
 				pets: [],
 				restaurants: [],
 				entertainment: [],
+				other: [],
 			},
-			income: 7500,
+			income: 0,
 			savings: 0,
 		});
+		setStartDate('');
+		setEndDate('');
+		setSelector(false);
 	}
+
+	useEffect(() => {
+		const listOfData: Array<string> = [];
+		async function fetcher() {
+			const querySnapshot = await getDocs(collection(db, `${userState}`));
+			querySnapshot.forEach((doc) => {
+				listOfData.push(doc.id);
+			});
+			setDocuments(listOfData);
+		}
+		userState?(fetcher()) : (console.log("Czekam na usera..."));
+	});
 	return (
 		<div className="grid grid-cols-3 gap-2">
-			<div className="col-span-1 h-screen">Jestem bocznym elementem</div>
+			<div className="col-span-1 h-screen">
+				{documents ? (
+					<div>
+						{documents.map((doc: any) => {
+							return (
+								<li key={uuidv4()}>
+									<a  href="#">
+										{doc}
+									</a>
+								</li>
+							);
+						})}
+					</div>
+				) : (
+					<div>loading</div>
+				)}
+			</div>
 			<div className="col-span-2 h-screen">
 				<section className="relative bg-white">
 					<img
@@ -54,7 +91,12 @@ export default function AddShopping() {
 							</p>
 
 							<div className="flex mt-8 justify-left">
-								<button onClick={() => selector===false?setSelector(true) : setSelector(false)} className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700"  >
+								<button
+									onClick={() =>
+										selector === false ? setSelector(true) : setSelector(false)
+									}
+									className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700"
+								>
 									Wybierz daty
 								</button>
 							</div>
@@ -69,7 +111,9 @@ export default function AddShopping() {
 											id="startDate"
 											type="date"
 											value={startDate}
-											onChange={(e) => {setStartDate(e.target.value)}}
+											onChange={(e) => {
+												setStartDate(e.target.value);
+											}}
 										/>
 										<label htmlFor="endDate">
 											<h6>End date:</h6>
@@ -79,10 +123,15 @@ export default function AddShopping() {
 											id="endDate"
 											type="date"
 											value={endDate}
-											onChange={(e) => {setEndDate(e.target.value)}}
+											onChange={(e) => {
+												setEndDate(e.target.value);
+											}}
 										/>
 									</form>
-									<button className=" mt-1.5 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700">
+									<button
+										onClick={addSavings}
+										className=" mt-1.5 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700"
+									>
 										Wyślij
 									</button>
 								</div>

@@ -1,8 +1,8 @@
 .date_form{
-    margin-top: 1rem;
+    margin-top: 2rem;
     width: 80vh;
     height: 35vh;
-    padding: 2rem;
+    
 }
 
 .form_general{
@@ -12,5 +12,5 @@ flex-direction: column;
 
 .form_input{
     max-width: 15rem;
-    border: solid black 2px;
+    border: solid black 1.5px;
 }
