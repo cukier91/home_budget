@@ -1,0 +1,16 @@
+.date_form{
+    margin-top: 2rem;
+    width: 80vh;
+    height: 35vh;
+    
+}
+
+.form_general{
+display: flex;
+flex-direction: column;
+}
+
+.form_input{
+    max-width: 15rem;
+    border: solid black 1.5px;
+}

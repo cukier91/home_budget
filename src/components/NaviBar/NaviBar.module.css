@@ -1,13 +1,32 @@
-.container{
-    padding-left: 30%;
+:root {
+	--mono_white: #faf9f9;
+    --over_white: #f1faee;
 }
 
-.img_logo{
-    width: 2rem;
-    filter: invert(100%);
+
+.container {
+	padding-left: 30%;
 }
 
-.logo_name{
-    font-family: 'Montserrat', cursive;
-    font-weight: 600;
+.img_logo {
+	width: 2.5rem;
+	filter: invert(100%);
 }
+
+.logo_name {
+	font-family: 'Montserrat', cursive;
+	font-weight: 600;
+}
+
+.link_name {
+	color: var(--mono_white);
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.link_name:hover{
+    color: var(--over_white);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
