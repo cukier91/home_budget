@@ -4,7 +4,8 @@ import { auth, db } from 'src/config/firebase-config';
 import money from '../../img/money.jpg';
 import style from '../AddShopping/AddShopping.module.css';
 import { onAuthStateChanged } from 'firebase/auth';
-import { v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 // Add a new document in collection "cities"
 
@@ -19,7 +20,7 @@ export default function AddShopping() {
 	});
 
 	async function addSavings() {
-		await setDoc(doc(db, `${userState}`, `${startDate} - ${endDate}`), {
+		await setDoc(doc(db, `${userState}`, `${startDate}-${endDate}`), {
 			expense: {
 				auto: [],
 				foodShopping: [],
@@ -48,20 +49,21 @@ export default function AddShopping() {
 			});
 			setDocuments(listOfData);
 		}
-		userState?(fetcher()) : (console.log("Czekam na usera..."));
+		userState ? fetcher() : console.log('Czekam na usera...');
 	});
 	return (
-		<div className="grid grid-cols-3 gap-2">
-			<div className="col-span-1 h-screen">
+		<div className=" bg-gray-100 grid grid-cols-3 gap-2">
+			<div className=" px-3 py-4 col-span-1 h-screen text-center">
+				<h3 className="font-extrabold sm:text-2xl">
+					Twoje Budżety
+				</h3>
 				{documents ? (
-					<div>
+					<div className={style.budget}>
 						{documents.map((doc: any) => {
 							return (
-								<li key={uuidv4()}>
-									<a  href="#">
-										{doc}
-									</a>
-								</li>
+								<div key={uuidv4()} className={style.budget_container}>
+									<Link className={style.budget_link} to={`/budget/${doc}`}>{doc}</Link>
+								</div>
 							);
 						})}
 					</div>
@@ -69,7 +71,7 @@ export default function AddShopping() {
 					<div>loading</div>
 				)}
 			</div>
-			<div className="col-span-2 h-screen">
+			<div className="col-span-2 h-screen ">
 				<section className="relative bg-white">
 					<img
 						className="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-full opacity-85 sm:opacity-100"
@@ -95,7 +97,7 @@ export default function AddShopping() {
 									onClick={() =>
 										selector === false ? setSelector(true) : setSelector(false)
 									}
-									className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700"
+									className="px-7 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-blue-700"
 								>
 									Wybierz daty
 								</button>
