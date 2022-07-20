@@ -11,17 +11,10 @@ import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import { AuthProvider } from './context/AuthContext';
-import { auth } from './config/firebase-config';
-import { onAuthStateChanged } from 'firebase/auth';
 
 //ToDo onAuthChange dodać do protected rout
 
 function App() {
-	const [userState, setUserState] = useState<string | null>('');
-	onAuthStateChanged(auth, (user) => {
-		user ? setUserState(user.email) : setUserState(null);
-	});
-
 	return (
 		<>
 			<Routers>
@@ -32,9 +25,9 @@ function App() {
 						<Route path="login" element={<LoginPage />} />
 						<Route path="register" element={<RegisterPage />} />
 						<Route
-							path="addShopping"
+							path="add-shopping"
 							element={
-								<Protected isLoggedIn={userState !== null ? true : false}>
+								<Protected>
 									<AddShopping />
 								</Protected>
 							}

@@ -1,23 +1,20 @@
-import { createContext,useContext,useState,Dispatch } from "react";
+import { createContext,useContext,useState,Dispatch,SetStateAction } from "react";
 
 interface AuthContextType {
-    isAuthorized:boolean;
-    setIsAuthorized: (isAutorized:boolean)=>void
+    userId:string;
+    setUserId: Dispatch<SetStateAction<string>>
 }
 
 const AuthContext = createContext<AuthContextType|undefined>(undefined);
  
 export const AuthProvider = ({ children }:{children:React.ReactNode}) => {
-    const [isAuthorized, setIsAuthorized] = useState(()=>{
-    //TODO: problemy z parsowaniem moga byc bo czasem getItem moze byc nullem
-        return JSON.parse(localStorage.getItem("user")||"")
-  });
+    const [userId, setUserId] = useState("");
   
   return (
     <AuthContext.Provider
       value={{
-        isAuthorized,
-        setIsAuthorized
+        userId,
+        setUserId
       }}
     >
       {children}
