@@ -9,9 +9,9 @@ export default function UserDataPage() {
 	const [userData, setUserData] = useState<object>();
 	const { budgetId } = useParams();
 	const { userId } = useAuthContext();
-	const [select, setSelect] = useState<string>('other');
-	const [inputValue, setInputValue] = useState<number>(0.00);
-	const [userChoice, setUserChoice] = useState<object>({
+	const [select, setSelect] = useState('other');
+	const [inputValue, setInputValue] = useState(0.0);
+	const [userChoice, setUserChoice] = useState({
 		auto: 0,
 		clothes: 0,
 		entertainment: 0,
@@ -21,6 +21,7 @@ export default function UserDataPage() {
 		pets: 0,
 		restaurants: 0,
 	});
+	console.log(Object.entries(userChoice));
 
 	console.log(select, inputValue);
 
@@ -65,36 +66,64 @@ export default function UserDataPage() {
 		getSingleData();
 	}
 
+	const handleAddExpense = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		setUserChoice((prev) => ({
+			...prev,
+			[select]: prev[select as keyof typeof prev] + inputValue,
+		}));
+	};
+
 	return (
 		<div>
 			{userId ? (
-				<div>
-					<button onClick={testData} className={style.btn}>
-						I want to merge my data
-					</button>
+				<>
+					<div>
+						<button onClick={testData} className={style.btn}>
+							I want to merge my data
+						</button>
+						{/* TODO: move to another component */}
+						<form>
+							<select
+								defaultValue={'other'}
+								onChange={(e) => setSelect(e.target.value)}
+							>
+								{options.map((option) => {
+									return (
+										<option key={option.value} value={option.value}>
+											{option.label}
+										</option>
+									);
+								})}
+							</select>
+							<div>
+								<label htmlFor="price">Amount</label>
+								<input
+									id="price"
+									type="number"
+									step="0.01"
+									value={inputValue}
+									placeholder="tap the number"
+									onChange={(e) => setInputValue(parseFloat(e.target.value))}
+								></input>
+							</div>
+							<button onClick={handleAddExpense}>Add to table</button>
+						</form>
+					</div>
 
-					<form>
-						<select
-							defaultValue={'other'}
-							onChange={(e) => setSelect(e.target.value)}
-						>
-							{options.map((option) => {
-								return <option key={option.value}>{option.label}</option>;
+					<div>
+						<table>
+							{Object.entries(userChoice).map((element) => {
+								return (
+									<tr key={element[0]}>
+										<th>{element[0]}</th>
+										<td>{element[1]}</td>
+									</tr>
+								);
 							})}
-						</select>
-						<div>
-							<label htmlFor="price">Amount</label>
-							<input
-								id="price"
-								type="number"
-								step="0.01"
-								value={inputValue}
-								placeholder="tap the number"
-								onChange={(e) => setInputValue(parseFloat(e.target.value))}
-							></input>
-						</div>
-					</form>
-				</div>
+						</table>
+					</div>
+				</>
 			) : (
 				<div>loading...</div>
 			)}
