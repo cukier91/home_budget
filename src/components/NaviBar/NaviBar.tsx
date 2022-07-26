@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
 import style from './NaviBar.module.css';
 import wallet from '../../img/wallet.png';
 import { Link } from 'react-router-dom';
 import { auth } from 'src/config/firebase-config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import {useAuthContext} from "../../context/AuthContext";
 
 export default function NaviBar() {
-	//const { isAuthorized } = useAuthContext();
-	const [user, setUser] = useState<string | null>();
+	const {  userId,
+        setUserId } = useAuthContext();
 
 	onAuthStateChanged(auth, (currentUser) => {
-		currentUser ? setUser(currentUser.email) : setUser(null);
+		currentUser ? setUserId(currentUser.uid) : setUserId("");
 	});
 
 	const logout = async () => {
@@ -49,7 +49,7 @@ export default function NaviBar() {
 								<li>
 									<Link
 										className={style.link_name}
-										to="/addShopping"
+										to="/add-shopping"
 									>
 										Add bill
 									</Link>
@@ -95,7 +95,7 @@ export default function NaviBar() {
 					</div>
 
 					<div className="flex items-center gap-4">
-						{user ? (
+						{userId ? (
 							<div className="sm:gap-4 sm:flex">
 								<a
 									className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-md shadow"
