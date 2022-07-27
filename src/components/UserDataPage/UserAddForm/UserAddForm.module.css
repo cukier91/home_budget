@@ -1,0 +1,33 @@
+.User_add_wrapper {
+	width: 100%;
+	height: 100vh;
+	justify-content: center;
+	text-align: center;
+	align-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.table_wrapp {
+	justify-content: center;
+	text-align: center;
+	align-content: center;
+	display: flex;
+}
+
+.table {
+	width: 31rem;
+	font-size: 1rem;
+	text-align: left;
+	height: 20rem;
+}
+
+th:hover {
+	border-bottom: solid black 1px;
+}
+
+.buttons {
+	padding-top: 1.5%;
+	display: flex;
+	justify-content: center;
+}
