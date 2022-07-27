@@ -5,6 +5,7 @@ import money from '../../img/money.jpg';
 import style from '../AddShopping/AddShopping.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuthContext } from 'src/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 // Add a new document in collection "cities"
 
@@ -15,6 +16,7 @@ export default function AddShopping() {
 	const [selector, setSelector] = useState<boolean | undefined>(false);
 
 	const {userId}=useAuthContext()
+	const navigate = useNavigate()
 
 	async function addSavings() {
 		await setDoc(doc(db, `${userId}`, `${startDate}-${endDate}`), {
@@ -37,6 +39,7 @@ export default function AddShopping() {
 		setStartDate('');
 		setEndDate('');
 		setSelector(false);
+		navigate(`/budget/${startDate}-${endDate}`)
 	}
 
 	useEffect(() => {
