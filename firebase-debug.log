@@ -1,0 +1,21 @@
+[debug] [2022-07-28T09:11:50.781Z] ----------------------------------------------------------------------
+[debug] [2022-07-28T09:11:50.783Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wakac\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-07-28T09:11:50.783Z] CLI Version:   11.4.0
+[debug] [2022-07-28T09:11:50.783Z] Platform:      win32
+[debug] [2022-07-28T09:11:50.783Z] Node Version:  v16.14.0
+[debug] [2022-07-28T09:11:50.784Z] Time:          Thu Jul 28 2022 11:11:50 GMT+0200 (czas środkowoeuropejski letni)
+[debug] [2022-07-28T09:11:50.785Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-28T09:11:50.791Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-28T09:11:50.791Z] > authorizing via signed-in user (konarowski.bartosz@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\wakac\Desktop\Programowanie\home_budget
+

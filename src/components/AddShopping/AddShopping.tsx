@@ -15,23 +15,23 @@ export default function AddShopping() {
 	const [endDate, setEndDate] = useState<number | string>('');
 	const [selector, setSelector] = useState<boolean | undefined>(false);
 
-	const {userId}=useAuthContext()
-	const navigate = useNavigate()
+	const { userId } = useAuthContext();
+	const navigate = useNavigate();
 
 	async function addSavings() {
 		await setDoc(doc(db, `${userId}`, `${startDate}-${endDate}`), {
 			expense: {
 				Transport: {},
 				Jedzenie: {},
-				Ubezpieczenia: {},
+				'Ubezpieczenia i rachunki': {},
 				Chemia: {},
-				Ubrania: {},
+				'Alkohol i papierosy': {},
 				Zwierzęta: {},
 				Restauracje: {},
 				Rozrywka: {},
+				Słodycze: {},
+				Kredyty: {},
 				Inne: {},
-				Rachunki:{},
-				Kredyty:{}
 			},
 			Zarobki: 0,
 			Bilans: 0,
@@ -39,7 +39,7 @@ export default function AddShopping() {
 		setStartDate('');
 		setEndDate('');
 		setSelector(false);
-		navigate(`/budget/${startDate}-${endDate}`)
+		navigate(`/budget/${startDate}-${endDate}`);
 	}
 
 	useEffect(() => {
@@ -50,24 +50,24 @@ export default function AddShopping() {
 				listOfData.push(doc.id);
 			});
 			setDocuments(listOfData);
-			console.log("oh no")
+			console.log('oh no');
 		}
-		if(userId){
-			fetcher()
+		if (userId) {
+			fetcher();
 		}
-	},[userId]);
+	}, [userId]);
 	return (
 		<div className=" bg-gray-100 grid grid-cols-3 gap-2">
 			<div className=" px-3 py-4 col-span-1 h-screen text-center">
-				<h3 className="font-extrabold sm:text-2xl">
-					Twoje Budżety
-				</h3>
+				<h3 className="font-extrabold sm:text-2xl">Twoje Budżety</h3>
 				{documents ? (
 					<div className={style.budget}>
 						{documents.map((doc: any) => {
 							return (
 								<div key={uuidv4()} className={style.budget_container}>
-									<a className={style.budget_link} href={`/budget/${doc}`}>{doc}</a>
+									<a className={style.budget_link} href={`/budget/${doc}`}>
+										{doc}
+									</a>
 								</div>
 							);
 						})}

@@ -1,0 +1,17 @@
+.chart_wrapper {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+    height: 90vh;
+}
+
+.chart {
+	width: 130vh;
+    text-align: center;
+}
+
+.chart h1{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}

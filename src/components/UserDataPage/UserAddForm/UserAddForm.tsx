@@ -13,36 +13,32 @@ export default function UserAddForm({
 	const [select, setSelect] = useState('Inne');
 	const [inputValue, setInputValue] = useState(0.0);
 	const [userChoice, setUserChoice] = useState({
-		Transport: 0,
-		Ubrania: 0,
-		Rozrywka: 0,
-		Jedzenie: 0,
-		Ubezpieczenia: 0,
-		Inne: 0,
-		Zwierzęta: 0,
-		Restauracje: 0,
+		'Alkohol i papierosy': 0,
 		Chemia: 0,
-		Rachunki: 0,
+		Inne: 0,
+		Jedzenie: 0,
 		Kredyty: 0,
+		Restauracje: 0,
+		Rozrywka: 0,
+		Słodycze: 0,
+		Transport: 0,
+		'Ubezpieczenia i rachunki': 0,
+		Zwierzęta: 0,
 	});
-
-	console.log(Object.entries(userChoice));
-
-	console.log(select, inputValue);
 
 	const resetExpense = () => {
 		setUserChoice({
-			Transport: 0,
-			Ubrania: 0,
-			Rozrywka: 0,
-			Jedzenie: 0,
-			Ubezpieczenia: 0,
-			Inne: 0,
-			Zwierzęta: 0,
-			Restauracje: 0,
+			'Alkohol i papierosy': 0,
 			Chemia: 0,
-			Rachunki: 0,
+			Inne: 0,
+			Jedzenie: 0,
 			Kredyty: 0,
+			Restauracje: 0,
+			Rozrywka: 0,
+			Słodycze: 0,
+			Transport: 0,
+			'Ubezpieczenia i rachunki': 0,
+			Zwierzęta: 0,
 		});
 	};
 
