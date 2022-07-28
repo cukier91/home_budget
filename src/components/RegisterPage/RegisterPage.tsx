@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+	createUserWithEmailAndPassword,
+	sendEmailVerification,
+	getAuth,
+} from 'firebase/auth';
 import { auth } from 'src/config/firebase-config';
 
 export default function RegisterPage() {
 	const [registerEmail, setRegisterEmail] = useState('');
 	const [registerPassword, setRegisterPassword] = useState('');
+	const [passwordState, setPasswordState] = useState<boolean>(false);
 
-	const register = async (e:React.FormEvent) => {
+	const register = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const createUser = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-			console.log(createUser)
-		} catch (err:unknown) {
-			alert(err)
+			const createUser = await createUserWithEmailAndPassword(
+				auth,
+				registerEmail,
+				registerPassword
+			);
+
+			sendEmailVerification(createUser.user);
+		} catch (err: unknown) {
+			alert(err);
 		}
 	};
 
 	return (
-		
 		<div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
 			<div className="max-w-lg mx-auto">
 				<h1 className="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
@@ -30,7 +39,6 @@ export default function RegisterPage() {
 
 				<form
 					onSubmit={register}
-					
 					className="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl"
 				>
 					<p className="text-xl text-center font-medium">
@@ -80,7 +88,7 @@ export default function RegisterPage() {
 
 						<div className="relative mt-1">
 							<input
-								type="password"
+								type={passwordState ? 'text' : 'password'}
 								value={registerPassword}
 								id="password"
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
@@ -92,6 +100,11 @@ export default function RegisterPage() {
 
 							<span className="absolute inset-y-0 inline-flex items-center right-4">
 								<svg
+									onClick={
+										passwordState
+											? () => setPasswordState(false)
+											: () => setPasswordState(true)
+									}
 									xmlns="http://www.w3.org/2000/svg"
 									className="w-5 h-5 text-gray-400"
 									fill="none"

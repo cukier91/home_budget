@@ -8,24 +8,34 @@ export default function Foot() {
 					<div className="flex justify-center space-x-6">
 						<a
 							className="text-blue-500 hover:text-opacity-75"
-							href="/"
+							href="https://linkedin.com/in/bartosz-konarowski"
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label="Twitter"
+							aria-label="Linkedin"
 						>
 							<svg
 								className="w-8 h-8"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-								aria-hidden="true"
+								xmlns="http://www.w3.org/2000/svg"
+								height="72"
+								viewBox="0 0 72 72"
+								width="72"
 							>
-								<path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+								<g fill="none" fill-rule="evenodd">
+									<path
+										d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z"
+										fill="#007EBB"
+									/>
+									<path
+										d="M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z"
+										fill="#FFF"
+									/>
+								</g>
 							</svg>
 						</a>
 
 						<a
 							className="text-gray-900 hover:text-opacity-75"
-							href="/"
+							href="https://github.com/cukier91"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="GitHub"
@@ -43,83 +53,23 @@ export default function Foot() {
 								></path>
 							</svg>
 						</a>
-
-						<a
-							className="text-pink-600 hover:text-opacity-75"
-							href="/dribbble"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="Dribbble"
-						>
-							<svg
-								className="w-8 h-8"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-								aria-hidden="true"
-							>
-								<path
-									fillRule="evenodd"
-									d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-									clipRule="evenodd"
-								></path>
-							</svg>
-						</a>
 					</div>
 
-					<nav className="relative flex flex-wrap justify-center gap-8 p-8 text-sm font-bold border-4 border-black rounded-xl">
+					<p className="max-w-lg mx-auto text-xs text-gray-500 text-justify">
+						Podanie przez Państwa danych na potrzeby funkcjonowania aplikacji
+						jest dobrowolne. Mają Państwo prawo dostępu do treści swoich danych
+						oraz prawo ich sprostowania, usunięcia, ograniczenia przetwarzania.
+						Szczegółowe informacje dotycznące RODO znajdą Państwo poniżej.
 						<a
-							className="hover:opacity-75"
-							href="/"
+							className="block mt-1 text-pink-600 underline decoration-wavy decoration-pink-500 hover:opacity-75 text-center"
+							href="/rodo"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Website
-						</a>
-
-						<a
-							className="hover:opacity-75"
-							href="/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							Uses
-						</a>
-
-						<a
-							className="hover:opacity-75"
-							href="/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							Blog
-						</a>
-
-						<a
-							className="hover:opacity-75"
-							href="/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							Portfolio
-						</a>
-					</nav>
-
-					<p className="max-w-lg mx-auto text-xs text-gray-500">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
-						natus tempore illo laborum nam, modi quam sequi amet quo quasi
-						impedit iure eum similique pariatur alias exercitationem, porro
-						perspiciatis esse. Corporis odit consequatur sint sequi.
-						<a
-							className="block mt-1 text-pink-600 underline decoration-wavy decoration-pink-500 hover:opacity-75"
-							href="/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							External Link
+							RODO
 						</a>
 					</p>
-
-					<p className="text-xs font-medium">2022 John Doe</p>
+					<p className="text-xs font-medium">2022 Your Home Budget</p>
 				</div>
 			</div>
 		</footer>

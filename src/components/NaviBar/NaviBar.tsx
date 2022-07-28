@@ -3,14 +3,13 @@ import wallet from '../../img/wallet.png';
 import { Link } from 'react-router-dom';
 import { auth } from 'src/config/firebase-config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import {useAuthContext} from "../../context/AuthContext";
+import { useAuthContext } from '../../context/AuthContext';
 
 export default function NaviBar() {
-	const {  userId,
-        setUserId } = useAuthContext();
+	const { userId, setUserId } = useAuthContext();
 
 	onAuthStateChanged(auth, (currentUser) => {
-		currentUser ? setUserId(currentUser.uid) : setUserId("");
+		currentUser ? setUserId(currentUser.uid) : setUserId('');
 	});
 
 	const logout = async () => {
@@ -38,56 +37,26 @@ export default function NaviBar() {
 
 							<ul className="flex items-center gap-6 text-sm">
 								<li>
-									<Link
-										className={style.link_name}
-										to="/about"
-									>
-										About
+									<Link className={style.link_name} to="/add-shopping">
+										Wydatki
 									</Link>
 								</li>
-
+								<li>
+									<Link className={style.link_name} to="/about">
+										O nas
+									</Link>
+								</li>
+								<li>
+									<Link className={style.link_name} to="/">
+										Kontakt
+									</Link>
+								</li>
 								<li>
 									<Link
 										className={style.link_name}
-										to="/add-shopping"
+										to=""
 									>
-										Add bill
-									</Link>
-								</li>
-
-								<li>
-									<Link
-										className={style.link_name}
-										to="/"
-									>
-										History
-									</Link>
-								</li>
-
-								<li>
-									<Link
-										className={style.link_name}
-										to="/"
-									>
-										Services
-									</Link>
-								</li>
-
-								<li>
-									<Link
-										className={style.link_name}
-										to="/"
-									>
-										Projects
-									</Link>
-								</li>
-
-								<li>
-									<Link
-										className={style.link_name}
-										to="/"
-									>
-										Blog
+										Profil
 									</Link>
 								</li>
 							</ul>

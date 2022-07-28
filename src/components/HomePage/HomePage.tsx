@@ -23,7 +23,7 @@ export default function HomePage() {
       
               <div className="p-8 sm:p-16 lg:p-24">
                 <h2 className="text-2xl font-bold sm:text-3xl">
-                  Inflacja zjada całą towją pensję? Chcesz zacząć planować wydatki i zapanować nad domowym budżetem? 
+                  Inflacja zjada całą twoją pensję? Chcesz zacząć planować wydatki i zapanować nad domowym budżetem? 
                 </h2>
       
                 <p className="mt-4 text-gray-600">

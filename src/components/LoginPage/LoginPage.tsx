@@ -5,10 +5,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
-
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [loginEmail, setLoginEmail] = useState<string>('');
 	const [loginPassword, setLoginPassword] = useState<string>('');
+	const [passwordState, setPasswordState] = useState<boolean>(false);
 
 	const login = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -18,7 +18,7 @@ export default function LoginPage() {
 				loginEmail,
 				loginPassword
 			);
-			return navigate('/')
+			return navigate('/');
 		} catch (err) {
 			alert(err);
 		}
@@ -28,15 +28,17 @@ export default function LoginPage() {
 		<section className="relative flex flex-wrap lg:h-screen lg:items-center">
 			<div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-16 lg:py-24">
 				<div className="max-w-lg mx-auto text-center">
-					<h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
+					<h1 className="text-2xl font-bold sm:text-3xl">Zacznij już dziś!</h1>
 
 					<p className="mt-4 text-gray-500">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-						nulla eaque error neque ipsa culpa autem, at itaque nostrum!
+						Prawie wszyscy mamy rachunki i zobowiązania. Co robić kiedy na koniec miesiąca zostaje ci niewiele?  Kontroluj budżet z nami i daj sobie szansę zaoszczędzić. 
 					</p>
 				</div>
 
-				<form className="max-w-md mx-auto mt-8 mb-0 space-y-4" onSubmit={(e) => login(e)}>
+				<form
+					className="max-w-md mx-auto mt-8 mb-0 space-y-4"
+					onSubmit={(e) => login(e)}
+				>
 					<div>
 						<label htmlFor="email" className="sr-only">
 							Email
@@ -78,7 +80,7 @@ export default function LoginPage() {
 						</label>
 						<div className="relative">
 							<input
-								type="password"
+								type={passwordState ? 'text' : 'password'}
 								value={loginPassword}
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
 								placeholder="Enter password"
@@ -89,6 +91,11 @@ export default function LoginPage() {
 
 							<span className="absolute inset-y-0 inline-flex items-center right-4">
 								<svg
+									onClick={
+										passwordState
+											? () => setPasswordState(false)
+											: () => setPasswordState(true)
+									}
 									xmlns="http://www.w3.org/2000/svg"
 									className="w-5 h-5 text-gray-400"
 									fill="none"
@@ -114,14 +121,14 @@ export default function LoginPage() {
 
 					<div className="flex items-center justify-between">
 						<p className="text-sm text-gray-500">
-							No account?
+							Nie masz jeszcze konta? 
 							<a className="underline " href="/register">
-								Sign up
+								Zarejestruj się!
 							</a>
 						</p>
 
 						<button
-							type='submit'
+							type="submit"
 							className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
 						>
 							Sign in
