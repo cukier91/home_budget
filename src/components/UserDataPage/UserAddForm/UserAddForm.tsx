@@ -62,7 +62,7 @@ export default function UserAddForm({
 			if (value === 0) {
 				continue;
 			} else {
-				expense[key] = { [newDate]: value };
+				expense[key] = { [newDate]: value.toFixed(2) };
 			}
 		}
 		const dataRef = doc(db, `${userId}`, `${budgetId}`);
@@ -129,7 +129,7 @@ export default function UserAddForm({
 							return (
 								<tr key={element[0]}>
 									<th>{element[0]}</th>
-									<td>{element[1]}</td>
+									<td>{element[1].toFixed(2)}</td>
 								</tr>
 							);
 						})}

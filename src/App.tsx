@@ -11,6 +11,7 @@ import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import { AuthProvider } from './context/AuthContext';
+import RodoPage from './components/RodoPage/RodoPage';
 
 //ToDo onAuthChange dodać do protected rout
 
@@ -35,6 +36,7 @@ function App() {
 						<Route path="budget" element={<UserDataPage />}>
 							<Route path=":budgetId" element={<UserDataPage />} />
 						</Route>
+						<Route path="rodo" element={<RodoPage />} />
 					</Routes>
 					<Foot />
 				</AuthProvider>
