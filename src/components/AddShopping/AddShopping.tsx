@@ -5,7 +5,7 @@ import money from '../../img/money.jpg';
 import style from '../AddShopping/AddShopping.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuthContext } from 'src/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Add a new document in collection "cities"
 
@@ -65,9 +65,9 @@ export default function AddShopping() {
 						{documents.map((doc: any) => {
 							return (
 								<div key={uuidv4()} className={style.budget_container}>
-									<a className={style.budget_link} href={`/budget/${doc}`}>
+									<Link className={style.budget_link} to={`/budget/${doc}`}>
 										{doc}
-									</a>
+									</Link>
 								</div>
 							);
 						})}

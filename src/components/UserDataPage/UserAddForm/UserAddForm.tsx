@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import style from '../UserAddForm/UserAddForm.module.css';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from 'src/config/firebase-config';
+import { useParams } from 'react-router-dom';
+import { useAuthContext } from 'src/context/AuthContext';
 
-export default function UserAddForm({
-	userId,
-	budgetId,
-}: {
-	userId: string | undefined;
-	budgetId: string | undefined;
-}) {
+export default function UserAddForm({setKey}:{setKey:any}) {
+	const { budgetId } = useParams();
+	const { userId } = useAuthContext();
 	const [select, setSelect] = useState('Inne');
 	const [inputValue, setInputValue] = useState(0.0);
 	const [userChoice, setUserChoice] = useState({
@@ -51,20 +49,22 @@ export default function UserAddForm({
 		setInputValue(0.0);
 	};
 
-	const sendExpense = () => {
+	const sendExpense = async () => {
 		let expense: any = {};
 		const newDate = new Date().toISOString();
 		for (const [key, value] of Object.entries(userChoice)) {
 			if (value === 0) {
 				continue;
 			} else {
-				expense[key] = { [newDate]: value.toFixed(2) };
+				expense[key] = { [newDate]: parseFloat(value.toFixed(2)) };
 			}
 		}
 		const dataRef = doc(db, `${userId}`, `${budgetId}`);
 
-		setDoc(dataRef, { expense: expense }, { merge: true });
+		const x=await setDoc(dataRef, { expense: expense }, { merge: true });
+		console.log("setDoc",x)
 		resetExpense();
+		setKey((prev:any)=>prev+1)
 	};
 
 	return (

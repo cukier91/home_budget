@@ -1,77 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import style from '../UserDataPage/UserDataPage.module.css';
-import { useParams } from 'react-router-dom';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from 'src/config/firebase-config';
-import { useAuthContext } from 'src/context/AuthContext';
 import UserAddForm from './UserAddForm/UserAddForm';
 import ChartComponent from './ChartComponent/ChartComponent';
+import { Protected } from 'src/utils/Protected';
+import {useState} from "react";
 
 export default function UserDataPage() {
-	const [userData, setUserData] = useState<object>();
-	const { budgetId } = useParams();
-	const { userId } = useAuthContext();
-
-	async function getSingleData() {
-		if (budgetId) {
-			const docRef = doc(db, userId, budgetId);
-			const docSnap = await getDoc(docRef);
-			if (docSnap.exists()) {
-				const userData = docSnap.data();
-				setUserData(userData);
-			} else {
-				// doc.data() will be undefined in this case
-				console.log('No such document!');
-			}
-		}
-	}
-
-	useEffect(() => {
-		if (userId) {
-			getSingleData();
-		}
-		console.log(userData);
-		//eslint-disable-next-line
-	}, [userId]);
-
+	const [key,setKey]=useState(0)
 	return (
-		<div>
-			{userId? (
-				<>
-					<UserAddForm userId={userId} budgetId={budgetId} />
-					<ChartComponent/>
-				</>
-			) : (
-				<div className="flex h-screen w-screen items-center justify-center">
-					<button
-						type="button"
-						className="flex items-center rounded-lg bg-indigo-500 px-4 py-2 text-white"
-						disabled
-					>
-						<svg
-							className="mr-3 h-5 w-5 animate-spin text-white"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-						>
-							<circle
-								className="opacity-25"
-								cx="12"
-								cy="12"
-								r="10"
-								stroke="currentColor"
-								stroke-width="4"
-							></circle>
-							<path
-								className="opacity-75"
-								fill="currentColor"
-								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-							></path>
-						</svg>
-						<span className="font-medium"> Loading... </span>
-					</button>
-				</div>
-			)}
-		</div>
+		<Protected>
+			<>
+				<UserAddForm setKey={setKey} />
+				<ChartComponent key={key}/>
+			</>
+		</Protected>
 	);
 }

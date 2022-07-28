@@ -7,8 +7,15 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType|undefined>(undefined);
  
+const getUserId=()=>{
+  const item=localStorage.getItem("user");
+  if(item!==null){
+    return item
+  }
+  return "";
+}
 export const AuthProvider = ({ children }:{children:React.ReactNode}) => {
-    const [userId, setUserId] = useState("");
+    const [userId, setUserId] = useState(getUserId());
   
   return (
     <AuthContext.Provider
