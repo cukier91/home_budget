@@ -4,17 +4,25 @@ import { Link } from 'react-router-dom';
 import { auth } from 'src/config/firebase-config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useAuthContext } from '../../context/AuthContext';
+import { useState } from 'react';
 
 export default function NaviBar() {
 	const { userId, setUserId } = useAuthContext();
 
 	onAuthStateChanged(auth, (currentUser) => {
-		currentUser ? setUserId(currentUser.uid) : setUserId('');
+		if (currentUser) {
+			setUserId(currentUser.uid);
+			localStorage.setItem('user', currentUser.uid);
+		} else {
+			setUserId('');
+		}
 	});
 
 	const logout = async () => {
 		await signOut(auth);
 	};
+
+	const [toggleMenu, setToggleMenu] = useState(false);
 
 	return (
 		<header className="bg-gray-900">
@@ -52,10 +60,7 @@ export default function NaviBar() {
 									</Link>
 								</li>
 								<li>
-									<Link
-										className={style.link_name}
-										to=""
-									>
+									<Link className={style.link_name} to="">
 										Profil
 									</Link>
 								</li>
@@ -95,7 +100,10 @@ export default function NaviBar() {
 						)}
 
 						<div className="block md:hidden">
-							<button className="p-2 text-white transition bg-gray-800 rounded hover:text-white/75">
+							<button
+								className="p-2 text-white transition bg-gray-800 rounded hover:text-white/75"
+								onClick={() => setToggleMenu(true)}
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="w-5 h-5"
@@ -115,6 +123,9 @@ export default function NaviBar() {
 					</div>
 				</div>
 			</div>
+			{toggleMenu ? (
+				<div className="absolute top-0 left-0">Menu items</div>
+			) : null}
 		</header>
 	);
 }
