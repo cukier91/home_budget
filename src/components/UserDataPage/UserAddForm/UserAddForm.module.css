@@ -1,11 +1,12 @@
 .User_add_wrapper {
+	padding-top: 3%;
 	width: 100%;
-	height: 100vh;
-	justify-content: center;
+	height: 130vh;
 	text-align: center;
-	align-content: center;
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 5%;
+	
 }
 
 .table_wrapp {

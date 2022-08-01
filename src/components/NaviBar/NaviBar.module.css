@@ -1,8 +1,7 @@
 :root {
 	--mono_white: #faf9f9;
-    --over_white: #f1faee;
+	--over_white: #f1faee;
 }
-
 
 .container {
 	padding-left: 30%;
@@ -20,13 +19,14 @@
 
 .link_name {
 	color: var(--mono_white);
-    font-size: 1rem;
-    text-decoration: none;
+	font-size: 1rem;
+	text-decoration: none;
 }
 
-.link_name:hover{
-    color: var(--over_white);
-    font-size: 1.5rem;
-    font-weight: 700;
+@media only screen and (min-width: 766px) {
+	.link_name:hover {
+		color: var(--over_white);
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
 }
-

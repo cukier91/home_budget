@@ -5,7 +5,7 @@ import { db } from 'src/config/firebase-config';
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from 'src/context/AuthContext';
 
-export default function UserAddForm({setKey}:{setKey:any}) {
+export default function UserAddForm({ setKey }: { setKey: any }) {
 	const { budgetId } = useParams();
 	const { userId } = useAuthContext();
 	const [select, setSelect] = useState('Inne');
@@ -49,7 +49,8 @@ export default function UserAddForm({setKey}:{setKey:any}) {
 		setInputValue(0.0);
 	};
 
-	const sendExpense = async () => {
+	const sendExpense = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault()
 		let expense: any = {};
 		const newDate = new Date().toISOString();
 		for (const [key, value] of Object.entries(userChoice)) {
@@ -61,10 +62,16 @@ export default function UserAddForm({setKey}:{setKey:any}) {
 		}
 		const dataRef = doc(db, `${userId}`, `${budgetId}`);
 
-		const x=await setDoc(dataRef, { expense: expense }, { merge: true });
-		console.log("setDoc",x)
+		if (Object.entries(expense).length === 0) {
+			alert('Wprowadź dane przed wysłaniem');
+		} else {
+			const x = await setDoc(dataRef, { expense: expense }, { merge: true });
+			console.log('setDoc', x);
+		}
+		console.log("to jest expense", expense)
 		resetExpense();
-		setKey((prev:any)=>prev+1)
+		setKey((prev: any) => prev + 1);
+
 	};
 
 	return (
