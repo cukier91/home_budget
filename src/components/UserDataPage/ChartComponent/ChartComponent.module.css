@@ -2,17 +2,27 @@
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	
 }
 
 .chart {
 	text-align: center;
-    width: 80vw;
-    /* height: 80vh; */
+	width: 80vw;
+	height: 100vh;
+	margin-bottom: 5%;
 }
 
 .chart h1 {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	font-size: 2.5rem;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 1500px) {
+	.chart {
+		flex-direction: column;
+		justify-content: center;
+		width: 220vw;
+		height: 80vh;
+		margin-left: 10%;
+	}
 }

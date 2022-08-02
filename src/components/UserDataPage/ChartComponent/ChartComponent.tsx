@@ -21,7 +21,6 @@ export default function ChartComponent() {
 	const createChart = async () => {
 		if (userId) {
 			const userData = await getSingleData();
-			console.log('userData', userData);
 			const arr: any = [];
 			if (userData) {
 				for (const [key, value] of Object.entries(userData)) {
@@ -54,7 +53,6 @@ export default function ChartComponent() {
 		return notNullArray;
 	}
 
-	console.log(chartData);
 
 	async function getSingleData() {
 		if (budgetId) {
@@ -75,6 +73,8 @@ export default function ChartComponent() {
 			<div className={style.chart}>
 				<h1 className="md:text-2xl sm:text-m">Wydatki miesięczne </h1>
 				<Doughnut
+					width="400"
+					height="400"
 					data={{
 						labels: !chartData ? ['red'] : Object.keys(chartData),
 						datasets: [

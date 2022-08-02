@@ -65,10 +65,8 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 		if (Object.entries(expense).length === 0) {
 			alert('Wprowadź dane przed wysłaniem');
 		} else {
-			const x = await setDoc(dataRef, { expense: expense }, { merge: true });
-			console.log('setDoc', x);
+			await setDoc(dataRef, { expense: expense }, { merge: true });
 		}
-		console.log("to jest expense", expense)
 		resetExpense();
 		setKey((prev: any) => prev + 1);
 
