@@ -57,12 +57,12 @@ export default function NaviBar() {
 										</Link>
 									</li>
 									<li>
-										<Link className={style.link_name} to="/">
+										<Link className={style.link_name} to="/contact">
 											Kontakt
 										</Link>
 									</li>
 									<li>
-										<Link className={style.link_name} to="">
+										<Link className={style.link_name} to="/profil">
 											Profil
 										</Link>
 									</li>
