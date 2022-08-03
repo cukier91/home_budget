@@ -53,7 +53,6 @@ export default function ChartComponent() {
 		return notNullArray;
 	}
 
-
 	async function getSingleData() {
 		if (budgetId) {
 			const docRef = doc(db, userId, budgetId);
@@ -119,14 +118,14 @@ export default function ChartComponent() {
 						// 		beginAtZero: true,
 						// 	},
 						// },
-						maintainAspectRatio: true,
+						maintainAspectRatio: false,
 						aspectRatio: 2,
 						plugins: {
 							legend: {
 								display: true,
 								position: 'bottom',
 								labels: {
-									padding: 40,
+									padding: 15,
 								},
 							},
 						},

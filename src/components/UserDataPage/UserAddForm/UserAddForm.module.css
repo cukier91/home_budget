@@ -5,7 +5,7 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 5%;
+	margin-bottom: 2%;
 }
 
 .table_wrapp {
@@ -30,4 +30,14 @@ th:hover {
 	padding-top: 1.5%;
 	display: flex;
 	justify-content: center;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 1500px) {
+	.table_wrapp {
+		justify-content: center;
+		text-align: center;
+		align-content: center;
+		display: flex;
+		padding: 5%;
+	}
 }

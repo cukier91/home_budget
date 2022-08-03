@@ -128,7 +128,7 @@ export default function NaviBar() {
 			</header>
 			{toggleMenu ? (
 				<div className="flex-1 justify-self-center pb-3 pt-1.5 md:block md:pb-0 md:mt bg-gray-900 block md:hidden">
-					<ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+					<ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0" onClick={() => setToggleMenu(!toggleMenu)}>
 						<li>
 							<Link className={style.link_name} to="/add-shopping">
 								Wydatki
