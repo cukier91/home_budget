@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import {
 	createUserWithEmailAndPassword,
 	sendEmailVerification,
@@ -7,6 +8,7 @@ import {
 import { auth } from 'src/config/firebase-config';
 
 export default function RegisterPage() {
+	const navigate = useNavigate();
 	const [registerEmail, setRegisterEmail] = useState('');
 	const [registerPassword, setRegisterPassword] = useState('');
 	const [passwordState, setPasswordState] = useState<boolean>(false);
@@ -21,9 +23,11 @@ export default function RegisterPage() {
 			);
 
 			sendEmailVerification(createUser.user);
+			return navigate("/");
 		} catch (err: unknown) {
 			alert(err);
 		}
+		
 	};
 
 	return (

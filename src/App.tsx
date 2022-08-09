@@ -12,6 +12,9 @@ import HomePage from './components/HomePage/HomePage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import { AuthProvider } from './context/AuthContext';
 import RodoPage from './components/RodoPage/RodoPage';
+import UserProfilPage from './components/UserProfilPage/UserProfilPage';
+import AboutPage from './components/AboutPage/AboutPage';
+import ContactPage from './components/ContactPage/ContactPage';
 
 //ToDo onAuthChange dodać do protected rout
 
@@ -37,6 +40,9 @@ function App() {
 							<Route path=":budgetId" element={<UserDataPage />} />
 						</Route>
 						<Route path="rodo" element={<RodoPage />} />
+						<Route path="profil" element={<UserProfilPage />} />
+						<Route path="about" element={<AboutPage />} />
+						<Route path="contact" element={<ContactPage />} />
 					</Routes>
 					<Foot />
 				</AuthProvider>

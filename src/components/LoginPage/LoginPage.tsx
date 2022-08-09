@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import started from '../../img/getStarted.jpg';
 import { auth } from 'src/config/firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuthContext } from 'src/context/AuthContext';
 
 export default function LoginPage() {
+	const { userId } = useAuthContext();
 	const navigate = useNavigate();
 	const [loginEmail, setLoginEmail] = useState<string>('');
 	const [loginPassword, setLoginPassword] = useState<string>('');
@@ -24,6 +26,13 @@ export default function LoginPage() {
 		}
 	};
 
+	useEffect(() => {
+		console.log('Whats up');
+		if (userId) {
+			navigate('/add-shopping');
+		}
+	}, []);
+
 	return (
 		<section className="relative flex flex-wrap lg:h-screen lg:items-center">
 			<div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-16 lg:py-24">
@@ -31,7 +40,9 @@ export default function LoginPage() {
 					<h1 className="text-2xl font-bold sm:text-3xl">Zacznij już dziś!</h1>
 
 					<p className="mt-4 text-gray-500">
-						Prawie wszyscy mamy rachunki i zobowiązania. Co robić kiedy na koniec miesiąca zostaje ci niewiele?  Kontroluj budżet z nami i daj sobie szansę zaoszczędzić. 
+						Prawie wszyscy mamy rachunki i zobowiązania. Co robić kiedy na
+						koniec miesiąca zostaje ci niewiele? Kontroluj budżet z nami i daj
+						sobie szansę zaoszczędzić.
 					</p>
 				</div>
 
@@ -121,7 +132,7 @@ export default function LoginPage() {
 
 					<div className="flex items-center justify-between">
 						<p className="text-sm text-gray-500">
-							Nie masz jeszcze konta? 
+							Nie masz jeszcze konta?
 							<a className="underline " href="/register">
 								Zarejestruj się!
 							</a>

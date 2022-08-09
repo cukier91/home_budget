@@ -18,23 +18,22 @@ export default function ChartComponent() {
 	const { budgetId } = useParams();
 	const { userId } = useAuthContext();
 
-	const createChart=async()=>{
+	const createChart = async () => {
 		if (userId) {
-			const userData=await getSingleData();
-			console.log("userData", userData)
-				const arr: any = [];
-				if (userData) {
-					for (const [key, value] of Object.entries(userData)) {
-						if (key === 'expense') {
-							setChartData(sumDataSplitter(value));
-						}
+			const userData = await getSingleData();
+			const arr: any = [];
+			if (userData) {
+				for (const [key, value] of Object.entries(userData)) {
+					if (key === 'expense') {
+						setChartData(sumDataSplitter(value));
 					}
 				}
+			}
 		}
-	}
+	};
 
 	useEffect(() => {
-		createChart()
+		createChart();
 	}, []);
 
 	function sumDataSplitter(data: Object) {
@@ -53,8 +52,6 @@ export default function ChartComponent() {
 		}
 		return notNullArray;
 	}
-
-	console.log(chartData);
 
 	async function getSingleData() {
 		if (budgetId) {
@@ -75,6 +72,8 @@ export default function ChartComponent() {
 			<div className={style.chart}>
 				<h1 className="md:text-2xl sm:text-m">Wydatki miesięczne </h1>
 				<Doughnut
+					width="400"
+					height="400"
 					data={{
 						labels: !chartData ? ['red'] : Object.keys(chartData),
 						datasets: [
@@ -87,6 +86,12 @@ export default function ChartComponent() {
 									'rgba(75, 192, 192, 0.2)',
 									'rgba(153, 102, 255, 0.2)',
 									'rgba(255, 159, 64, 0.2)',
+									'rgba(199, 21, 133, 0.2)',
+									'rgba(255, 69, 0, 0.2)',
+									'rgba(0, 128, 0, 0.2)',
+									'rgba(0, 139, 139, 0.2)',
+									'rgba(0, 191, 255, 0.2)',
+									'rgba(139, 69, 19, 0.2)',
 								],
 								borderColor: [
 									'rgba(255, 99, 132, 1)',
@@ -95,6 +100,12 @@ export default function ChartComponent() {
 									'rgba(75, 192, 192, 1)',
 									'rgba(153, 102, 255, 1)',
 									'rgba(255, 159, 64, 1)',
+									'rgba(199, 21, 133, 1)',
+									'rgba(255, 69, 0, 1)',
+									'rgba(0, 128, 0, 1)',
+									'rgba(0, 139, 139, 1)',
+									'rgba(0, 191, 255, 1)',
+									'rgba(139, 69, 19, 1)',
 								],
 								borderWidth: 1,
 							},
@@ -107,14 +118,14 @@ export default function ChartComponent() {
 						// 		beginAtZero: true,
 						// 	},
 						// },
-						maintainAspectRatio: true,
+						maintainAspectRatio: false,
 						aspectRatio: 2,
 						plugins: {
 							legend: {
 								display: true,
 								position: 'bottom',
 								labels: {
-									padding: 40,
+									padding: 15,
 								},
 							},
 						},
