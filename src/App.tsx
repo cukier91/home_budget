@@ -42,7 +42,14 @@ function App() {
 						<Route path="rodo" element={<RodoPage />} />
 						<Route path="profil" element={<UserProfilPage />} />
 						<Route path="about" element={<AboutPage />} />
-						<Route path="contact" element={<ContactPage />} />
+						<Route
+							path="contact"
+							element={
+								<Protected>
+									<ContactPage />
+								</Protected>
+							}
+						/>
 					</Routes>
 					<Foot />
 				</AuthProvider>

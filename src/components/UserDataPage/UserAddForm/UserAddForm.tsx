@@ -4,7 +4,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from 'src/config/firebase-config';
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from 'src/context/AuthContext';
-import InfoComponent from 'src/components/InfoComponent/InfoComponent';
+import InfoComponent from 'src/components/InfoComponent/InfoComponent'
 
 export default function UserAddForm({ setKey }: { setKey: any }) {
 	const { budgetId } = useParams();
