@@ -60,7 +60,7 @@ export default function LoginPage() {
 								type="email"
 								value={loginEmail}
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-								placeholder="Enter email"
+								placeholder="Podaj e-mail..."
 								onChange={(event) => {
 									setLoginEmail(event.target.value);
 								}}
@@ -87,14 +87,14 @@ export default function LoginPage() {
 
 					<div>
 						<label htmlFor="password" className="sr-only">
-							Password
+							Hasło
 						</label>
 						<div className="relative">
 							<input
 								type={passwordState ? 'text' : 'password'}
 								value={loginPassword}
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-								placeholder="Enter password"
+								placeholder="Podaj hasło..."
 								onChange={(event) => {
 									setLoginPassword(event.target.value);
 								}}
@@ -142,7 +142,7 @@ export default function LoginPage() {
 							type="submit"
 							className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
 						>
-							Sign in
+							Zaloguj
 						</button>
 					</div>
 				</form>

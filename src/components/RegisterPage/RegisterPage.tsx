@@ -37,7 +37,7 @@ export default function RegisterPage() {
 					Zacznij korzystać już dziś
 				</h1>
 				<p className="max-w-md mx-auto mt-4 text-center text-gray-500">
-					Zarejestruj konto i zyskaj dostęp do funkcji planowania wydatków.
+					Zarejestruj konto i zyskaj dostęp do funkcji kontrolowania wydatków. Sprawdź swój stan budżetu na wykresach. 
 				</p>
 
 				<form
@@ -45,7 +45,7 @@ export default function RegisterPage() {
 					className="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl"
 				>
 					<p className="text-xl text-center font-medium">
-						Sign up to your account
+						Zarejestruj swoje konto
 					</p>
 
 					<div>
@@ -59,7 +59,7 @@ export default function RegisterPage() {
 								value={registerEmail}
 								id="email"
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-								placeholder="Enter email"
+								placeholder="E-mail..."
 								onChange={(event) => {
 									setRegisterEmail(event.target.value);
 								}}
@@ -86,7 +86,7 @@ export default function RegisterPage() {
 
 					<div>
 						<label htmlFor="password" className="text-sm font-medium">
-							Password
+							Hasło
 						</label>
 
 						<div className="relative mt-1">
@@ -95,7 +95,7 @@ export default function RegisterPage() {
 								value={registerPassword}
 								id="password"
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-								placeholder="Enter password"
+								placeholder="Hasło..."
 								onChange={(event) => {
 									setRegisterPassword(event.target.value);
 								}}
@@ -135,7 +135,7 @@ export default function RegisterPage() {
 						type="submit"
 						className="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg"
 					>
-						Sign up
+						Rejestruj
 					</button>
 
 					<p className="text-sm text-center text-gray-500">
