@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import style from '../ChartComponent/ChartComponent.module.css';
 import { useParams } from 'react-router-dom';
@@ -68,70 +68,72 @@ export default function ChartComponent() {
 	}
 
 	return (
-		<div className={style.chart_wrapper}>
-			<div className={style.chart}>
-				<h1 className="md:text-2xl sm:text-m">Wydatki miesięczne </h1>
-				<Doughnut
-					width="400"
-					height="400"
-					data={{
-						labels: !chartData ? ['red'] : Object.keys(chartData),
-						datasets: [
-							{
-								data: !chartData ? [] : Object.values(chartData),
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(153, 102, 255, 0.2)',
-									'rgba(255, 159, 64, 0.2)',
-									'rgba(199, 21, 133, 0.2)',
-									'rgba(255, 69, 0, 0.2)',
-									'rgba(0, 128, 0, 0.2)',
-									'rgba(0, 139, 139, 0.2)',
-									'rgba(0, 191, 255, 0.2)',
-									'rgba(139, 69, 19, 0.2)',
-								],
-								borderColor: [
-									'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1)',
-									'rgba(255, 206, 86, 1)',
-									'rgba(75, 192, 192, 1)',
-									'rgba(153, 102, 255, 1)',
-									'rgba(255, 159, 64, 1)',
-									'rgba(199, 21, 133, 1)',
-									'rgba(255, 69, 0, 1)',
-									'rgba(0, 128, 0, 1)',
-									'rgba(0, 139, 139, 1)',
-									'rgba(0, 191, 255, 1)',
-									'rgba(139, 69, 19, 1)',
-								],
-								borderWidth: 1,
-							},
-						],
-					}}
-					options={{
-						responsive: true,
-						// scales: {
-						// 	y: {
-						// 		beginAtZero: true,
-						// 	},
-						// },
-						maintainAspectRatio: false,
-						aspectRatio: 2,
-						plugins: {
-							legend: {
-								display: true,
-								position: 'bottom',
-								labels: {
-									padding: 15,
+		<>
+			<div className={style.chart_wrapper}>
+				<div className={style.chart}>
+					<h1 className="md:text-2xl sm:text-m">Wydatki miesięczne </h1>
+					<Doughnut
+						width="400"
+						height="400"
+						data={{
+							labels: !chartData ? ['red'] : Object.keys(chartData),
+							datasets: [
+								{
+									data: !chartData ? [] : Object.values(chartData),
+									backgroundColor: [
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(153, 102, 255, 0.2)',
+										'rgba(255, 159, 64, 0.2)',
+										'rgba(199, 21, 133, 0.2)',
+										'rgba(255, 69, 0, 0.2)',
+										'rgba(0, 128, 0, 0.2)',
+										'rgba(0, 139, 139, 0.2)',
+										'rgba(0, 191, 255, 0.2)',
+										'rgba(139, 69, 19, 0.2)',
+									],
+									borderColor: [
+										'rgba(255, 99, 132, 1)',
+										'rgba(54, 162, 235, 1)',
+										'rgba(255, 206, 86, 1)',
+										'rgba(75, 192, 192, 1)',
+										'rgba(153, 102, 255, 1)',
+										'rgba(255, 159, 64, 1)',
+										'rgba(199, 21, 133, 1)',
+										'rgba(255, 69, 0, 1)',
+										'rgba(0, 128, 0, 1)',
+										'rgba(0, 139, 139, 1)',
+										'rgba(0, 191, 255, 1)',
+										'rgba(139, 69, 19, 1)',
+									],
+									borderWidth: 1,
+								},
+							],
+						}}
+						options={{
+							responsive: true,
+							// scales: {
+							// 	y: {
+							// 		beginAtZero: true,
+							// 	},
+							// },
+							maintainAspectRatio: false,
+							aspectRatio: 2,
+							plugins: {
+								legend: {
+									display: true,
+									position: 'bottom',
+									labels: {
+										padding: 15,
+									},
 								},
 							},
-						},
-					}}
-				/>
+						}}
+					/>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
