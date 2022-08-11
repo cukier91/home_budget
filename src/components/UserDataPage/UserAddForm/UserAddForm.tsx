@@ -11,6 +11,7 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 	const { userId } = useAuthContext();
 	const [select, setSelect] = useState('Inne');
 	const [inputValue, setInputValue] = useState(0.0);
+	const [inputSum, setInputSum] = useState<number>(0);
 	const [infoStatus, setInfoStatus] = useState<boolean | string>(false);
 	const [userChoice, setUserChoice] = useState({
 		'Alkohol i papierosy': 0,
@@ -27,6 +28,7 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 	});
 
 	const resetExpense = () => {
+		setInputSum(0);
 		setUserChoice({
 			'Alkohol i papierosy': 0,
 			Chemia: 0,
@@ -48,6 +50,7 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 			...prev,
 			[select]: prev[select as keyof typeof prev] + inputValue,
 		}));
+		setInputSum(inputSum + inputValue);
 		setInputValue(0.0);
 	};
 
@@ -141,6 +144,10 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 									</tr>
 								);
 							})}
+							<tr>
+								<th className={style.border_sum}>Suma</th>
+								<td>{inputSum.toFixed(2)}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

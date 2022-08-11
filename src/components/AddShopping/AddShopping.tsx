@@ -47,10 +47,11 @@ export default function AddShopping() {
 		async function fetcher() {
 			const querySnapshot = await getDocs(collection(db, `${userId}`));
 			querySnapshot.forEach((doc) => {
-				listOfData.push(doc.id);
+				if (doc.id !== 'Messages') {
+					listOfData.push(doc.id);
+				}
 			});
 			setDocuments(listOfData);
-			console.log('oh no');
 		}
 		if (userId) {
 			fetcher();
@@ -91,7 +92,7 @@ export default function AddShopping() {
 							<h1 className="text-3xl font-extrabold sm:text-5xl">
 								Wyznacz nowy cel i zacznij oszczędzać
 							</h1>
- 
+
 							<p className="max-w-lg mt-4 sm:leading-relaxed sm:text-xl">
 								Wybierz zakres dat i kontroluj wydatki, aby zrealizować plany
 								krok po kroku.

@@ -21,10 +21,6 @@
 	height: 20rem;
 }
 
-th:hover {
-	border-bottom: solid black 1px;
-}
-
 .buttons {
 	padding-top: 1.5%;
 	display: flex;
@@ -39,4 +35,9 @@ th:hover {
 		display: flex;
 		padding: 5%;
 	}
+}
+
+.border_sum {
+	font-weight: 900;
+	border-top: solid black 0.5px;
 }

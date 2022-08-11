@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from 'src/config/firebase-config';
 import { useAuthContext } from 'src/context/AuthContext';
-import InfoComponent from '../InfoComponent/InfoComponent';
+import InfoComponent from '../InfoComponent/InfoComponent'
 
 export default function ContactPage() {
 	const [showMessageForm, setShowMessageForm] = useState<boolean>(false);
@@ -35,6 +35,7 @@ export default function ContactPage() {
 		} else {
 			setInfoStatus('red')
 		}
+		window.scrollTo(0,0)
 	};
 
 	return (
