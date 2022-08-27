@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import style from '../ChartComponent/ChartComponent.module.css';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from 'src/config/firebase-config';
 import { useAuthContext } from 'src/context/AuthContext';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 export default function ChartComponent() {
-	const [chartData, setChartData] = useState({});
+	const [chartData, setChartData] = useState({0:0});
 	// const [valueData, setValueData] = useState<any>([]);
 	//eslint-disable-next-line
 
 	const [userData, setUserData] = useState<object>({});
 	const { budgetId } = useParams();
 	const { userId } = useAuthContext();
+
+	console.log(chartData);
 
 	const createChart = async () => {
 		if (userId) {
@@ -50,6 +52,7 @@ export default function ChartComponent() {
 				);
 			}
 		}
+		console.log(notNullArray);
 		return notNullArray;
 	}
 
@@ -132,6 +135,20 @@ export default function ChartComponent() {
 							},
 						}}
 					/>
+				</div>
+			</div>
+			<div className="flex h-32 w-full justify-center flex-wrap mt-4">
+				<div className="flex w-full justify-center">
+					<h4>Podsumowanie</h4>
+				</div>
+
+				<div className="flex w-fulljustify-center flex-wrap">
+					<p className="w-full text-center">
+						Wydatki sumarycznie:
+						 {Object.values(chartData).reduce((a: any, b: any) => a + b).toFixed(2)} PLN
+					</p>
+					<p className="w-full text-center">Zarobki sumarycznie:</p>
+					<p className="w-full text-center">Różnica:</p>
 				</div>
 			</div>
 		</>

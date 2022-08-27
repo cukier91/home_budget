@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
+
 import NaviBar from './components/NaviBar/NaviBar';
 import Foot from './components/Foot/Foot';
 import LoginPage from './components/LoginPage/LoginPage';
