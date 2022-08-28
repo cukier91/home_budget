@@ -10,15 +10,13 @@ import { useAuthContext } from 'src/context/AuthContext';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 export default function ChartComponent() {
-	const [chartData, setChartData] = useState({0:0});
+	const [chartData, setChartData] = useState({ 0: 0 });
 	// const [valueData, setValueData] = useState<any>([]);
 	//eslint-disable-next-line
 
 	const [userData, setUserData] = useState<object>({});
 	const { budgetId } = useParams();
 	const { userId } = useAuthContext();
-
-	console.log(chartData);
 
 	const createChart = async () => {
 		if (userId) {
@@ -52,7 +50,6 @@ export default function ChartComponent() {
 				);
 			}
 		}
-		console.log(notNullArray);
 		return notNullArray;
 	}
 
@@ -137,15 +134,18 @@ export default function ChartComponent() {
 					/>
 				</div>
 			</div>
-			<div className="flex h-32 w-full justify-center flex-wrap mt-4">
+			<div className="flex h-32 w-full justify-center flex-wrap mt-32 sm:mt-4">
 				<div className="flex w-full justify-center">
 					<h4>Podsumowanie</h4>
 				</div>
 
-				<div className="flex w-fulljustify-center flex-wrap">
+				<div className="flex w-fulljustify-center flex-wrap mt-2">
 					<p className="w-full text-center">
 						Wydatki sumarycznie:
-						 {Object.values(chartData).reduce((a: any, b: any) => a + b).toFixed(2)} PLN
+						{Object.values(chartData)
+							.reduce((a: any, b: any) => a + b)
+							.toFixed(2)}{' '}
+						PLN
 					</p>
 					<p className="w-full text-center">Zarobki sumarycznie:</p>
 					<p className="w-full text-center">Różnica:</p>
