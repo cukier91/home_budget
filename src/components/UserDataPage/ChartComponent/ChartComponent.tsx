@@ -13,11 +13,12 @@ export default function ChartComponent() {
 	const [chartData, setChartData] = useState({ 0: 0 });
 	// const [valueData, setValueData] = useState<any>([]);
 	//eslint-disable-next-line
-
+	const [bilans, setBilans] = useState<number>(0);
 	const [userData, setUserData] = useState<object>({});
+	const [income, setIncome] = useState<number | object>(0);
+	const [summary, setSummary] = useState<boolean>(false);
 	const { budgetId } = useParams();
 	const { userId } = useAuthContext();
-
 	const createChart = async () => {
 		if (userId) {
 			const userData = await getSingleData();
@@ -26,6 +27,8 @@ export default function ChartComponent() {
 				for (const [key, value] of Object.entries(userData)) {
 					if (key === 'expense') {
 						setChartData(sumDataSplitter(value));
+					} else if (key === 'Zarobki') {
+						setIncome(value);
 					}
 				}
 			}
@@ -134,23 +137,52 @@ export default function ChartComponent() {
 					/>
 				</div>
 			</div>
-			<div className="flex h-32 w-full justify-center flex-wrap mt-32 sm:mt-4">
-				<div className="flex w-full justify-center">
-					<h4>Podsumowanie</h4>
-				</div>
-
-				<div className="flex w-fulljustify-center flex-wrap mt-2">
-					<p className="w-full text-center">
-						Wydatki sumarycznie:
-						{Object.values(chartData)
-							.reduce((a: any, b: any) => a + b)
-							.toFixed(2)}{' '}
-						PLN
-					</p>
-					<p className="w-full text-center">Zarobki sumarycznie:</p>
-					<p className="w-full text-center">Różnica:</p>
-				</div>
+			<div className="flex justify-center mt-32 sm:mt-4">
+				<button
+					className="inline-block px-5 py-2 ml-3 mb-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
+					onClick={() => {
+						setSummary(!summary);
+					}}
+				>
+					{summary ? 'Ukryj podsumowanie' : 'Pokaż podsumowanie'}
+				</button>
 			</div>
+			{summary ? (
+				<div className="flex h-32 w-full justify-center flex-wrap mt-8 sm:mt-4">
+					<div className="flex w-full justify-center flex-wrap">
+						<div className="flex h-8">
+							<p className="w-full text-center font-medium">
+								Wydatki sumarycznie:
+							</p>
+							<p className="ml-2">
+								{Object.values(chartData)
+									.reduce((a: any, b: any) => a + b)
+									.toFixed(2)}
+							</p>
+						</div>
+						<div className="flex w-full justify-center h-8">
+							<p className="text-center font-medium">Zarobki sumarycznie:</p>
+							<p className="ml-2">
+								{Object.values(income)
+									.reduce((a: any, b: any) => a + b)
+									.toFixed(2)}
+							</p>
+						</div>
+						<div className="flex w-full justify-center h-8">
+							<p className="text-center font-medium">Bilans:</p>
+							<p className="ml-2">
+								{(Object.values(income)
+									.reduce((a: any, b: any) => a + b)
+									.toFixed(2) - 
+							
+								parseFloat(Object.values(chartData)
+									.reduce((a: any, b: any) => a + b)
+									.toFixed(2))).toFixed(2)}
+							</p>
+						</div>
+					</div>
+				</div>
+			) : null}
 		</>
 	);
 }
