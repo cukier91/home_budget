@@ -7,7 +7,7 @@
 .chart {
 	text-align: center;
 	width: 50vw;
-	height: 80vh;
+	height: 100vh;
 	margin-bottom: 5%;
 	padding: 3%;
 }
@@ -25,27 +25,8 @@
 		width: 100vw;
 		height: 80vh;
 		padding: 10%;
-		margin-bottom: 15%;
+		margin-bottom: 10%;
 	}
 }
 
-@media only screen and (min-height: 352px) and (max-height: 430px) {
-	.chart {
-		flex-direction: column;
-		justify-content: center;
-		width: 60vw;
-		height: 60vw;
-		padding: 12%;
 
-	}
-}
-@media only screen and (min-height: 430px) and (max-height: 620px) {
-	.chart {
-		flex-direction: column;
-		justify-content: center;
-		width: 70vw;
-		height: 80vw;
-		padding: 12%;
-		
-	}
-}
