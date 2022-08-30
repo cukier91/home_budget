@@ -21,17 +21,17 @@ export default function AddShopping() {
 	async function addSavings() {
 		await setDoc(doc(db, `${userId}`, `${startDate}-${endDate}`), {
 			expense: {
-				Transport: {},
-				Jedzenie: {},
-				'Ubezpieczenia i rachunki': {},
-				Chemia: {},
-				'Alkohol i papierosy': {},
-				Zwierzęta: {},
-				Restauracje: {},
-				Rozrywka: {},
-				Słodycze: {},
-				Kredyty: {},
-				Inne: {},
+				Transport: {[startDate]: 0},
+				Jedzenie: {[startDate]: 0},
+				'Ubezpieczenia i rachunki': {[startDate]: 0},
+				Chemia: {[startDate]: 0},
+				'Alkohol i papierosy': {[startDate]: 0},
+				Zwierzęta: {[startDate]: 0},
+				Restauracje: {[startDate]: 0},
+				Rozrywka: {[startDate]: 0},
+				Słodycze: {[startDate]: 0},
+				Kredyty: {[startDate]: 0},
+				Inne: {[startDate]: 0},
 			},
 			Zarobki: {first : 0},
 		});
