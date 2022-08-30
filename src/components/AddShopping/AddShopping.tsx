@@ -33,8 +33,7 @@ export default function AddShopping() {
 				Kredyty: {},
 				Inne: {},
 			},
-			Zarobki: {},
-			Bilans: {},
+			Zarobki: {first : 0},
 		});
 		setStartDate('');
 		setEndDate('');

@@ -113,17 +113,18 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 								className="inline-block px-3 py-1 ml-3 text-sm font-medium text-blue-500 bg-white rounded-lg border-2 border-blue-500 hover:text-blue-700"
 								onClick={() => setAddIncomeStatus(!addIncomeStatus)}
 							>
-								{addIncomeStatus?"Dodaj wydatki": "Dodaj dochody"}
+								{addIncomeStatus ? 'Dodaj wydatki' : 'Dodaj dochody'}
 							</button>
 						</div>
 
 						{addIncomeStatus ? (
-							<div className="max-w-lg mx-auto text-center mb-12">
+							<div className="max-w-lg mx-auto text-center">
 								<h1 className="text-2xl font-bold sm:text-3xl">
 									Dodaj dochody
 								</h1>
 								<p className="mt-4 text-gray-500">
-									Poniżej podaj swój dochód netto i zatwierdź przyciskiem dodaj. Dane te zostaną przetworzone w sekcji podsumowanie.
+									Poniżej podaj swój dochód netto i zatwierdź przyciskiem dodaj.
+									Dane te zostaną przetworzone w sekcji podsumowanie.
 								</p>
 								<form
 									action=""
@@ -156,89 +157,98 @@ export default function UserAddForm({ setKey }: { setKey: any }) {
 							</div>
 						) : null}
 					</>
-					
-					<div className="max-w-lg mx-auto text-center">
-						<h1 className="text-2xl font-bold sm:text-3xl">Dodaj wydatki</h1>
+					{addIncomeStatus ? null : (
+						<>
+							<div className="max-w-lg mx-auto text-center">
+								<h1 className="text-2xl font-bold sm:text-3xl">
+									Dodaj wydatki
+								</h1>
 
-						<p className="mt-4 text-gray-500">
-							Poniżej wybierz kategorię swoich wydatków i podaj kwotę. Sprawdź
-							na podglądzie tabeli czy wszystkie wprowadzone koszty sa
-							prawidłowe i zatwierdź przyciskiem wyślij.
-						</p>
+								<p className="mt-4 text-gray-500">
+									Poniżej wybierz kategorię swoich wydatków i podaj kwotę.
+									Sprawdź na podglądzie tabeli czy wszystkie wprowadzone koszty
+									sa prawidłowe i zatwierdź przyciskiem wyślij.
+								</p>
+							</div>
+
+							<form action="" className="max-w-md mx-auto mt-8 mb-0 space-y-4">
+								<div>
+									<div className="relative">
+										<select
+											className="w-full p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+											defaultValue={select}
+											onChange={(e) => setSelect(e.target.value)}
+										>
+											{Object.keys(userChoice).map((element) => {
+												return <option key={element}>{element}</option>;
+											})}
+										</select>
+									</div>
+								</div>
+
+								<div>
+									<div className="relative">
+										<input
+											type="number"
+											step="0.01"
+											value={inputValue}
+											className="w-full p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+											placeholder="Podaj kwotę..."
+											onChange={(e) =>
+												setInputValue(parseFloat(e.target.value))
+											}
+										/>
+									</div>
+								</div>
+
+								<div className="flex items-center justify-between">
+									<button
+										className="inline-block px-5 py-2 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
+										onClick={handleAddExpense}
+									>
+										Dodaj
+									</button>
+								</div>
+							</form>
+						</>
+					)}
+				</div>
+				{addIncomeStatus? null:<>
+					<div className={style.table_wrapp}>
+						<table className={style.table}>
+							<tbody>
+								{Object.entries(userChoice).map((element) => {
+									return (
+										<tr key={element[0]}>
+											<th>{element[0]}</th>
+											<td>{element[1].toFixed(2)}</td>
+										</tr>
+									);
+								})}
+								<tr>
+									<th className={style.border_sum}>Suma</th>
+									<td>{inputSum.toFixed(2)}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-
-					<form action="" className="max-w-md mx-auto mt-8 mb-0 space-y-4">
-						<div>
-							<div className="relative">
-								<select
-									className="w-full p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-									defaultValue={select}
-									onChange={(e) => setSelect(e.target.value)}
-								>
-									{Object.keys(userChoice).map((element) => {
-										return <option key={element}>{element}</option>;
-									})}
-								</select>
-							</div>
-						</div>
-
-						<div>
-							<div className="relative">
-								<input
-									type="number"
-									step="0.01"
-									value={inputValue}
-									className="w-full p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-									placeholder="Podaj kwotę..."
-									onChange={(e) => setInputValue(parseFloat(e.target.value))}
-								/>
-							</div>
-						</div>
-
-						<div className="flex items-center justify-between">
+					<div className={style.buttons}>
+						<div className="mt-2.5 flex items-center justify-between">
 							<button
 								className="inline-block px-5 py-2 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
-								onClick={handleAddExpense}
+								onClick={sendExpense}
 							>
-								Dodaj
+								Wyślij
+							</button>
+							<button
+								className="inline-block px-5 py-2 ml-3 text-sm font-medium text-white bg-red-500 rounded-lg"
+								onClick={resetExpense}
+							>
+								Reset
 							</button>
 						</div>
-					</form>
-				</div>
-				<div className={style.table_wrapp}>
-					<table className={style.table}>
-						<tbody>
-							{Object.entries(userChoice).map((element) => {
-								return (
-									<tr key={element[0]}>
-										<th>{element[0]}</th>
-										<td>{element[1].toFixed(2)}</td>
-									</tr>
-								);
-							})}
-							<tr>
-								<th className={style.border_sum}>Suma</th>
-								<td>{inputSum.toFixed(2)}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div className={style.buttons}>
-					<div className="mt-2.5 flex items-center justify-between">
-						<button
-							className="inline-block px-5 py-2 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
-							onClick={sendExpense}
-						>
-							Wyślij
-						</button>
-						<button
-							className="inline-block px-5 py-2 ml-3 text-sm font-medium text-white bg-red-500 rounded-lg"
-							onClick={resetExpense}
-						>
-							Reset
-						</button>
 					</div>
-				</div>
+				</>}
 			</div>
 		</>
 	);
